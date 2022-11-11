@@ -24,7 +24,7 @@ Medcloud's challenge for Dev Full Stack.
 - You need to develop both the front-end and the back-end.
 - In the front-end you MUST use React.
 - In the back-end you MUST use Node.js.
-- The patient data should not be static or local (You MUST use a cloud database or a local database (I.e: Docker).
+- The patient data should not be static  (You MUST use a cloud database or a local database).
 - Field validation (date, required fields, etc).
 
 ## Extra Points
@@ -33,6 +33,7 @@ Medcloud's challenge for Dev Full Stack.
 - Pagination.
 - Use Material UI - https://material-ui.com.
 - A cool design.
+- If you choose a local database: a docker environment of your project.
 
 ## References
 
