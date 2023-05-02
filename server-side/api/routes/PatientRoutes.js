@@ -13,6 +13,6 @@ router.route('/:pkIdPatient')
     .delete(patientController.deletePatient)
     .get(patientController.getPatient)
 
-router.get('/amount', patientController.getPatientAmount)
+/*router.get('/amount', patientController.getPatientAmount)*/
 
 module.exports = router
