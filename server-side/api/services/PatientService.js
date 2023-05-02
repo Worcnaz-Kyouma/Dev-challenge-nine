@@ -55,8 +55,8 @@ function deletePatient(pkIdPatient){
 
 module.exports = {
     createPatient,
-    getPatients,
     getPatient,
+    getPatients,
     updatePatient,
     deletePatient,
 }
