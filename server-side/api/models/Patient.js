@@ -24,8 +24,8 @@ const Patient = sequelize.define('Patient', {
         allowNull: false,
         validate: {
             isBefore: (() => {
-                const date = new Date();
-                date = date.setDate(date.getDate() + 1)
+                let date = new Date();
+                date.setDate(date.getDate() + 1)
                 
                 return date.toJSON().slice(0,10)
             })()
@@ -42,20 +42,20 @@ const Patient = sequelize.define('Patient', {
         type: DataTypes.STRING
     },
     nmCity: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
     },
     dsAddress: {
         type: DataTypes.STRING,
         allowNull: false
     },
     nrAddress: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.DECIMAL
     },
     dsComplement: {
         type: DataTypes.STRING
     },
     cdCep: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
     },
     cdUf: {
         type: DataTypes.STRING
