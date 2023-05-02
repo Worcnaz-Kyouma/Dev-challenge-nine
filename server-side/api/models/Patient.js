@@ -1,9 +1,9 @@
-const { Sequelize, DataTypes } = require('sequelize')
+const { DataTypes } = require('sequelize')
 const sequelize = require('./../../config/sequelize')
 
 const Patient = sequelize.define('Patient', {
     pkIdPatient: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         autoIncrement: true,
         primaryKey: true
     },
@@ -14,11 +14,22 @@ const Patient = sequelize.define('Patient', {
     dsEmail: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
+        validate: {
+            isEmail: true
+        }
     },
     dtBorn: {
         type: DataTypes.DATE,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            isBefore: (() => {
+                const date = new Date();
+                date = date.setDate(date.getDate() + 1)
+                
+                return date.toJSON().slice(0,10)
+            })()
+        }
     },
 
     //
@@ -32,7 +43,6 @@ const Patient = sequelize.define('Patient', {
     },
     nmCity: {
         type: DataTypes.STRING,
-        allowNull: false
     },
     dsAddress: {
         type: DataTypes.STRING,
@@ -40,14 +50,12 @@ const Patient = sequelize.define('Patient', {
     },
     nrAddress: {
         type: DataTypes.NUMBER,
-        allowNull: false
     },
     dsComplement: {
         type: DataTypes.STRING
     },
     cdCep: {
         type: DataTypes.STRING,
-        allowNull: false
     },
     cdUf: {
         type: DataTypes.STRING
