@@ -6,7 +6,7 @@ function createPatient(patientJSON){
 }
 
 async function getPatients(queryParams){
-    if(queryParams!={})
+    if(queryParams=={})
         return Patient.findAll()
     else{
         const { limit, page/*, nmPatient*/ } = queryParams
