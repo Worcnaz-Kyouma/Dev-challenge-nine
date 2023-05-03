@@ -9,13 +9,17 @@ const Patient = sequelize.define('Patient', {
     },
     nmPatient: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
     },
     dsEmail: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
         validate: {
+            notEmpty: true,
             isEmail: true
         }
     },
@@ -23,6 +27,7 @@ const Patient = sequelize.define('Patient', {
         type: DataTypes.DATE,
         allowNull: false,
         validate: {
+            notEmpty: true,
             isBefore: (() => {
                 let date = new Date();
                 date.setDate(date.getDate() + 1)
@@ -36,7 +41,10 @@ const Patient = sequelize.define('Patient', {
 
     nmCountry: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
     },
     nmCity: {
         type: DataTypes.STRING
@@ -46,7 +54,10 @@ const Patient = sequelize.define('Patient', {
     },
     dsAddress: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
     },
     nrAddress: {
         type: DataTypes.DECIMAL

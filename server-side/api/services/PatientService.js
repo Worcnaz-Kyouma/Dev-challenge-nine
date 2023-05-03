@@ -2,7 +2,7 @@ const Patient = require('./../models/Patient')
 
 function createPatient(patientJSON){
     const newPatient = Patient.build(patientJSON)
-    newPatient.save()
+    newPatient.save().catch(err => console.log(err.name, err.errors[0].message))
 }
 
 async function getPatients(queryParams){
