@@ -38,10 +38,10 @@ const Patient = sequelize.define('Patient', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    nmDistrict: {
+    nmCity: {
         type: DataTypes.STRING
     },
-    nmCity: {
+    nmDistrict: {
         type: DataTypes.STRING
     },
     dsAddress: {
