@@ -1,56 +1,72 @@
 const Patient = require('./../models/Patient')
 
+function generateErrorJSON(err){
+    const errorJSON = {
+        error: {
+            type: err.constructor.name,
+            field: err.errors?.map(error => error.path),
+            message: err.errors?.map(error => error.message) || err.parent?.sqlMessage
+        }
+    }
+
+    return errorJSON
+}
+
 function createPatient(patientJSON){
     const newPatient = Patient.build(patientJSON)
-    newPatient.save().catch(err => console.log(err.name, err.errors.map((error) => error.message).toString()))
+    return newPatient.save().catch(generateErrorJSON)
 }
 
 async function getPatients(queryParams){
     if(queryParams=={})
-        return Patient.findAll()
+        return Patient.findAll().catch(generateErrorJSON)
     else{
         const { limit, page/*, nmPatient*/ } = queryParams
         /*if(limit<0 || page<1)
             throw new Error('Limit or Page invalid')*/
-        const rows = await Patient.findAll({
-            limit: limit,
-            offset: page-1 * limit,
-            where: "nmPatient" in queryParams ? {nmPatient: queryParams.nmPatient} : null
-        })
-
-        const patientAmount = await Patient.count({
-            where: "nmPatient" in queryParams ? {nmPatient: queryParams.nmPatient} : null
-        })
-        const totalPages = Math.ceil(patientAmount/limit) 
-
-        const responseBody = {
-            patients: rows,
-            totalPages: totalPages,
-            currentPage: page
-        }
-
-        return responseBody
+            try {
+                const rows = await Patient.findAll({
+                    limit: limit,
+                    offset: page-1 * limit,
+                    where: "nmPatient" in queryParams ? {nmPatient: queryParams.nmPatient} : null
+                })
+        
+                const patientAmount = await Patient.count({
+                    where: "nmPatient" in queryParams ? {nmPatient: queryParams.nmPatient} : null
+                })
+                const totalPages = Math.ceil(patientAmount/limit) 
+        
+                const responseBody = {
+                    patients: rows,
+                    totalPages: totalPages,
+                    currentPage: page
+                }
+        
+                return responseBody
+            } catch (err) {
+                return generateErrorJSON(err)
+            }
     }
 }
 
 function getPatient(pkIdPatient){
-    return Patient.findByPk(pkIdPatient)
+    return Patient.findByPk(pkIdPatient).catch(generateErrorJSON)
 }
 
 function updatePatient(patientJSON){
-    Patient.update(patientJSON, {
+    return Patient.update(patientJSON, {
         where: {
             pkIdPatient: patientJSON.pkIdPatient
         }
-    })
+    }).catch(generateErrorJSON)
 }
 
 function deletePatient(pkIdPatient){
-    Patient.destroy({
+    return Patient.destroy({
         where: {
             pkIdPatient: pkIdPatient
         }
-    })
+    }).catch(generateErrorJSON)
 }
 
 module.exports = {

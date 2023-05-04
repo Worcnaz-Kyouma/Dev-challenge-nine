@@ -1,53 +1,67 @@
 const patientService = require('./../services/PatientService')
 
-function createPatient(req, res){
-    try {
-        patientService.createPatient(req.body)
-        res.sendStatus(201)
-    } catch (e) {
-        console.log(e.message)
-        res.sendStatus(500)
+function getHttpErrorStatusCode(data){
+    const { error: {type} } = data
+    const clientErrors = ["ValidationError","UniqueConstraintError"]
+    
+    if(clientErrors.includes(type)){
+        return 400
     }
+    else{
+        return 500
+    }
+    
+}
+
+async function createPatient(req, res){
+    const data = await patientService.createPatient(req.body)
+
+    res.status(201)
+    if(data?.error)
+        res.status(getHttpErrorStatusCode(data))
+    
+    res.json(data)
 }
 
 async function getPatients(req, res){
-    try {
-        res.status(200)
-        res.send(await patientService.getPatients(req.query))
-    } catch (e) {
-        console.log(e.message)
-        res.sendStatus(500)
-    }
+    const data = await patientService.getPatients(req.query)
+
+    res.status(200)
+    if(data?.error)
+        res.status(getHttpErrorStatusCode(data))
+
+    res.json(data)
 }
 
 async function getPatient(req, res){
-    try {
-        res.status(200)
-        res.send(await patientService.getPatient(req.params.pkIdPatient))
-    } catch (e) {
-        console.log(e.message)
-        res.sendStatus(500)
-    }
+    const data = await patientService.getPatient(req.params.pkIdPatient)
+
+    res.status(200)
+    if(data?.error)
+        res.status(getHttpErrorStatusCode(data))     
+
+    res.json(data)
 }
 
-function updatePatient(req, res){
-    try {
-        patientService.updatePatient(req.body)
-        res.sendStatus(200)
-    } catch (e) {
-        console.log(e.message)
-        res.sendStatus(500)
-    }
+async function updatePatient(req, res){
+    const data = await patientService.updatePatient(req.body)
+
+    res.status(200)
+    if(data?.error)
+        res.status(getHttpErrorStatusCode(data))   
+
+    res.json(data)
 }
 
-function deletePatient(req, res){
-    try {
-        patientService.deletePatient(req.params.pkIdPatient)
-        res.sendStatus(200)
-    } catch (e) {
-        console.log(e.message)
-        res.sendStatus(500)
+async function deletePatient(req, res){
+    const data = await patientService.deletePatient(req.params.pkIdPatient)
+
+    res.status(200)
+    if(data?.error){
+        res.status(getHttpErrorStatusCode(data))
     }
+    
+    res.json(data)
 }
 
 module.exports = {
