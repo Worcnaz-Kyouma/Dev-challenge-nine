@@ -18,23 +18,32 @@ function createPatient(patientJSON){
 }
 
 async function getPatients(queryParams){
-    if(queryParams=={})
+    if(!Object.keys(queryParams).length)
         return Patient.findAll().catch(generateErrorJSON)
     else{
         const { limit, page/*, nmPatient*/ } = queryParams
         /*if(limit<0 || page<1)
             throw new Error('Limit or Page invalid')*/
             try {
-                const rows = await Patient.findAll({
-                    limit: limit,
-                    offset: page-1 * limit,
-                    where: "nmPatient" in queryParams ? {nmPatient: queryParams.nmPatient} : null
-                })
-        
                 const patientAmount = await Patient.count({
-                    where: "nmPatient" in queryParams ? {nmPatient: queryParams.nmPatient} : null
+                    where: "nmPatient" in queryParams ? {nmPatient: JSON.parse(queryParams.nmPatient)} : null,
                 })
                 const totalPages = Math.ceil(patientAmount/limit) 
+
+                if(totalPages<page-1){
+                    return {
+                        error: {
+                            type: "BadRequest",
+                            message: "Invalid page"
+                        }
+                    }
+                }
+                
+                const rows = await Patient.findAll({
+                    limit: parseInt(limit),
+                    offset: (page-1) * limit,
+                    where: "nmPatient" in queryParams ? {nmPatient: JSON.parse(queryParams.nmPatient)} : null
+                })
         
                 const responseBody = {
                     patients: rows,
