@@ -5,7 +5,7 @@ function generateErrorJSON(err){
         error: {
             type: err.constructor.name,
             field: err.errors?.map(error => error.path),
-            message: err.errors?.map(error => error.message) || err.parent?.sqlMessage
+            message: err.errors?.map(error => error.message) || err?.message || err.parent?.sqlMessage
         }
     }
 
@@ -26,23 +26,18 @@ async function getPatients(queryParams){
             throw new Error('Limit or Page invalid')*/
             try {
                 const patientAmount = await Patient.count({
-                    where: "nmPatient" in queryParams ? {nmPatient: JSON.parse(queryParams.nmPatient)} : null,
+                    where: "nmPatient" in queryParams ? {nmPatient: queryParams.nmPatient} : null,
                 })
                 const totalPages = Math.ceil(patientAmount/limit) 
 
-                if(totalPages<page-1){
-                    return {
-                        error: {
-                            type: "BadRequest",
-                            message: "Invalid page"
-                        }
-                    }
-                }
+                if(page!=1 && totalPages<page)
+                    throw new Error("Invalid page")
+
                 
                 const rows = await Patient.findAll({
                     limit: parseInt(limit),
                     offset: (page-1) * limit,
-                    where: "nmPatient" in queryParams ? {nmPatient: JSON.parse(queryParams.nmPatient)} : null
+                    where: "nmPatient" in queryParams ? {nmPatient: queryParams.nmPatient} : null
                 })
         
                 const responseBody = {

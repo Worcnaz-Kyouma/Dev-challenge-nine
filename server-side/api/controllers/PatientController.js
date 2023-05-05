@@ -2,7 +2,7 @@ const patientService = require('./../services/PatientService')
 
 function getHttpErrorStatusCode(data){
     const { error: {type} } = data
-    const clientErrors = ["BadRequest", "ValidationError","UniqueConstraintError"]
+    const clientErrors = ["Error", "ValidationError","UniqueConstraintError"]
     
     if(clientErrors.includes(type)){
         return 400
