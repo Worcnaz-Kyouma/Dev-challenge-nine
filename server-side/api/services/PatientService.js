@@ -5,7 +5,7 @@ function generateErrorJSON(err){
         error: {
             type: err.constructor.name,
             field: err.errors?.map(error => error.path),
-            message: err.errors?.map(error => error.message) || err?.message || err.parent?.sqlMessage
+            message: err.parent?.sqlMessage || err.errors?.map(error => error.message) /*|| err?.message*/
         }
     }
 
@@ -20,36 +20,37 @@ function createPatient(patientJSON){
 async function getPatients(queryParams){
     if(!Object.keys(queryParams).length)
         return Patient.findAll().catch(generateErrorJSON)
-    else{
-        const { limit, page/*, nmPatient*/ } = queryParams
-        /*if(limit<0 || page<1)
-            throw new Error('Limit or Page invalid')*/
-            try {
-                const patientAmount = await Patient.count({
-                    where: "nmPatient" in queryParams ? {nmPatient: queryParams.nmPatient} : null,
-                })
-                const totalPages = Math.ceil(patientAmount/limit) 
 
-                if(page!=1 && totalPages<page)
-                    throw new Error("Invalid page")
+    const { limit, page, nmPatient } = queryParams
+    
+    try {
+        const patientAmount = await Patient.count({
+            where: nmPatient ? {nmPatient: nmPatient} : null
+        })
+        
+        const totalPages = Math.ceil(patientAmount/limit) 
 
-                
-                const rows = await Patient.findAll({
-                    limit: parseInt(limit),
-                    offset: (page-1) * limit,
-                    where: "nmPatient" in queryParams ? {nmPatient: queryParams.nmPatient} : null
-                })
+        /*if(page!=1 && totalPages<page)
+            throw new Error("Invalid page")*/
+
         
-                const responseBody = {
-                    patients: rows,
-                    totalPages: totalPages,
-                    currentPage: page
-                }
-        
-                return responseBody
-            } catch (err) {
-                return generateErrorJSON(err)
-            }
+        const rows = await Patient.findAll({
+            limit: parseInt(limit),
+            offset: (page-1) * limit,
+            where: nmPatient ? {nmPatient: nmPatient} : null
+        })
+
+        const responseBody = {
+            patients: rows,
+            totalPages: totalPages,
+            currentPage: page
+        }
+
+        return responseBody
+
+    } 
+    catch (err) {
+        return generateErrorJSON(err)
     }
 }
 
