@@ -1,5 +1,8 @@
 export default function NewPatient(){
     return(
-        <p>New Patient!</p>
+        <>
+            <p>New Patient!</p>
+            <input type="text"/>
+        </>
     )
 }
