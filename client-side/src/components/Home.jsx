@@ -11,7 +11,7 @@ export default function Home(){
     return(
         <>
             <button onClick={() => selectPatient(1)}>Edit patient 1</button>
-            <Clipboard pkIdPatient={selectedPatient} deselectPatient={() => selectPatient('')}/>
+            <Clipboard selectedPatient={selectedPatient} selectPatient={selectPatient}/>
         </>
     )
 }

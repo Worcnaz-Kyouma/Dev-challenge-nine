@@ -5,25 +5,19 @@ import './styles/Clipboard.css'
 import { useState, useEffect } from 'react'
 
 export default function Clipboard(props){
-    const [ isEnabled, setEnabled ] = useState('')
-
-    useEffect(()=>{
-        if(props.pkIdPatient)
-            setEnabled('enabled')
-    }, [ props.pkIdPatient ])
 
     return(
         <>
-            <div className={'clipboard ' + isEnabled}>
-                <button className={'clipboard-btn ' + isEnabled} onClick={() => {
-                    setEnabled(oldValue => (!oldValue) ? 'enabled' : '')
-                    props.deselectPatient()
+            <div className={(props.selectedPatient) ? 'clipboard enabled' : 'clipboard'}>
+                <button className={(props.selectedPatient) ? 'clipboard-btn enabled' : 'clipboard-btn'} onClick={() => {
+                    props.selectPatient(oldValue => !oldValue ? 'newPatient' : '')
                 }}> 
                 </button>
 
-                {(isEnabled) && <div className='clipboard-content'>
-                {props.pkIdPatient
-                    ?   <EditPatient pkIdPatient={props.pkIdPatient}/>
+                {(props.selectedPatient) && 
+                <div className='clipboard-content'>
+                {props.selectedPatient != 'newPatient'
+                    ?   <EditPatient pkIdPatient={props.selectedPatient}/>
 
                     :   <NewPatient />
                 }
