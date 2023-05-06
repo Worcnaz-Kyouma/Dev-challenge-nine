@@ -1,0 +1,53 @@
+.clipboard{
+    --clipboard-width: 700px;
+    display: flex;
+    justify-content: center;
+
+    width: var(--clipboard-width);
+    height: 925px;
+
+    position: fixed;
+    
+    left: -moz-calc(50% - (var(--clipboard-width)/2));
+    left: -webkit-calc(50% - (var(--clipboard-width)/2));
+    left: calc(50% - (var(--clipboard-width)/2));
+
+    transform: translateY(92%);
+
+    background: url("..\resources\Clipboard(New).png");
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+
+    transition: all 0.4s;
+}
+
+#clipboard-btn{
+    position: absolute;
+    top: 11px;
+
+    width: 10%;
+    aspect-ratio: 1;
+
+    border: 0px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 10px 1px inset rgba(0, 0, 0, 0.259);
+
+    background-color: #ffc90a;
+    filter: brightness(107%);
+
+    background: url("..\resources\cross-sign.png");
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+
+    transform: rotate(-45deg);
+
+    transition: all 0.4s;
+}
+
+.clipboard.enabled{
+    transform: translateY(0%);
+}
+
+#clipboard-btn.enabled{
+    transform: rotate(0deg);
+}
