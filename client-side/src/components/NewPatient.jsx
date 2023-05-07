@@ -59,17 +59,7 @@ export default function NewPatient(){
                 <label htmlFor="cdUf">UF</label>
             </div>
             
-            {/*<input type="text" id="dsEmail" name="dsEmail"/>
-            <input type="text" id="dtBorn" name="dtBorn"/>
-            <input type="text" id="nmCountry" name="nmCountry"/>
-            <input type="text" id="nmCity" name="nmCity"/>
-            <input type="text" id="nmDistrict" name="nmDistrict"/>
-            <input type="text" id="dsAddress" name="dsAddress"/>
-            <input type="text" id="nrAddress" name="nrAddress"/>
-            <input type="text" id="dsComplement" name="dsComplement"/>
-            <input type="text" id="cdCep" name="cdCep"/>
-            <input type="text" id="cdUf" name="cdUf"/>
-            <button>Submit</button>*/}
+           <button>Submit</button>
         </>
     )
 }
