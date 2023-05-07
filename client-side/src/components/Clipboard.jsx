@@ -1,8 +1,6 @@
 import NewPatient from './NewPatient'
 import EditPatient from './EditPatient'
-
 import './styles/Clipboard.css'
-import { useState, useEffect } from 'react'
 
 export default function Clipboard(props){
 

@@ -4,7 +4,7 @@
     justify-content: center;
 
     width: var(--clipboard-width);
-    height: 925px;
+    height: 847px;
 
     position: fixed;
     
@@ -13,9 +13,7 @@
     left:    -moz-calc(50% - (var(--clipboard-width)/2));
     left:         calc(50% - (var(--clipboard-width)/2));
 
-    top: 847px;
-
-    /*transform: translateY(91.5%);*/
+    transform: translateY(88.5%);
 
     background: url("..\resources\Clipboard(New).png");
     background-repeat: no-repeat;
@@ -49,7 +47,7 @@
 }
 
 .clipboard.enabled{
-    transform: translateY(-91.5%);
+    transform: translateY(-2.8%);
 }
 
 .clipboard-btn.enabled{
@@ -58,10 +56,10 @@
 
 .clipboard-content{
     position: absolute;
-    top: 165px;
+    top: 158px;
 
     width: 90%;
-    height: 79%;
+    height: 78%;
 
     border-radius: 20px;
 
