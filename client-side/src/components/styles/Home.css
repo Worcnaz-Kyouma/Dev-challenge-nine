@@ -3,6 +3,10 @@ html, body{
     font-family: 'Segoe UI';
 }
 
+button{
+    width: 300px;
+}
+
 body{
     position: absolute;
     width: 100%;

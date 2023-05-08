@@ -5,8 +5,7 @@ import './styles/Clipboard.css'
 export default function Clipboard(props){
 
     return(
-        <>
-            <div className={(props.selectedPatient) ? 'clipboard enabled' : 'clipboard'}>
+        <div className={(props.selectedPatient) ? 'clipboard enabled' : 'clipboard'}>
                 <button className={(props.selectedPatient) ? 'clipboard-btn enabled' : 'clipboard-btn'} onClick={() => {
                     props.selectPatient(oldValue => !oldValue ? 'newPatient' : '')
                 }}> 
@@ -21,6 +20,5 @@ export default function Clipboard(props){
                 }
                 </div>}
             </div>
-        </>
     )
 }

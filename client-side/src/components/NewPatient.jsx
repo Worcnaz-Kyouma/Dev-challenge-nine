@@ -2,7 +2,7 @@ import './styles/InputPatient.css'
 
 export default function NewPatient(){
     return(
-        <>
+        <form>
             <div className="input-wrapper">
                 <input type="text" id="nmPatient" name="nmPatient" placeholder=' '/>
                 <label htmlFor="nmPatient">Nome</label>
@@ -59,7 +59,7 @@ export default function NewPatient(){
                 <label htmlFor="cdUf">UF</label>
             </div>
             
-           <button>Submit</button>
-        </>
+           <button type="submit" value="Submit">Submit</button>
+        </form>
     )
 }
