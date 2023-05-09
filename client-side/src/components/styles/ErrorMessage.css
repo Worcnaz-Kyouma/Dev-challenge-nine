@@ -26,7 +26,7 @@
 
     color: white;
 
-    animation: error 4s ease-out forwards;
+    animation: error 3.5s ease-out forwards;
 }
 
 @keyframes error {
@@ -42,7 +42,7 @@
     12%{
         top: 1%;
     }
-    20%{
+    16%{
         opacity: 1;
     }
     90%{
