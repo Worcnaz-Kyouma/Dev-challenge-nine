@@ -17,7 +17,7 @@
     background-image: url("..\resources\alert.png");
     background-repeat: no-repeat;
     background-size:30px 30px;
-    background-position: 3% 0%;
+    background-position: 2% 0%;
     background-origin: content-box; 
 
     padding: 15px 5px 15px 5px;
@@ -26,7 +26,37 @@
 
     color: white;
 
-    transition: all 0.4s;
+    animation: error 4s cubic-bezier(.68,.54,.39,.82) forwards;
+}
+
+@keyframes error {
+    0%{
+        opacity: 0;
+    }
+    0%,4%,8%{
+        top: 0%
+    }
+    2%,6%,10%{
+        top: 2%;
+    }
+    12%{
+        top: 1%;
+    }
+    20%{
+        opacity: 1;
+    }
+    90%{
+        opacity: 1;
+    }
+    99.9%{
+        opacity: 0;
+    }
+    100%{
+        visibility : hidden; 
+        outline : none;
+        pointer-events : none;
+        opacity: 0;
+    }
 }
 
 .error-title{
