@@ -1,0 +1,44 @@
+.error{
+    position: fixed;
+
+    min-width: 325px;
+    width: 23%;
+
+    top: 1%;
+    left: 100%;
+    transform: translateX(-102%);
+
+    box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.25);
+
+    border-radius: 15px;
+
+    background-color: rgb(255, 100, 100);
+
+    background-image: url("..\resources\alert.png");
+    background-repeat: no-repeat;
+    background-size:30px 30px;
+    background-position: 3% 0%;
+    background-origin: content-box; 
+
+    padding: 15px 5px 15px 5px;
+
+    z-index: 99;
+
+    color: white;
+
+    transition: all 0.4s;
+}
+
+.error-title{
+    font-size: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.500);
+    margin: 0px;
+    padding: 1px 0px 12px 8px;
+
+    text-align: center;
+}
+
+.error-message{
+    padding: 5px 0px 0px 6px;
+    margin: 10px 0px 10px 0px;
+}

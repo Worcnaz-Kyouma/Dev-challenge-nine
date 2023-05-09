@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
+import ErrorMessage from './ErrorMessage'
 import './styles/InputForm.css'
 
 export default function NewPatient(){
@@ -25,15 +26,7 @@ export default function NewPatient(){
     
     return(
         <>
-            {patientMutation.data?.error && 
-            /*<ErrorMessage erroresponse={patientMutation.data.error} /> */
-            <p id='error'>
-                {patientMutation.data.error.type == 'UniqueConstraintError' && patientMutation.data.error.field.includes('dsEmail')
-                    ? 'This email is already in use!'
-                    :  patientMutation.data.error.message
-                }
-            </p>
-            }
+            {patientMutation.data?.error && <ErrorMessage errorResponse={patientMutation.data.error} />}
 
             <form onSubmit={handleSubmit}>
                 <div className="input-wrapper">
