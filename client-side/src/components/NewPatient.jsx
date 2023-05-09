@@ -26,7 +26,7 @@ export default function NewPatient(){
     
     return(
         <>
-            {patientMutation.data?.error && <ErrorMessage errorResponse={patientMutation.data.error} />}
+            {(patientMutation.isSuccess && patientMutation.data?.error) && <ErrorMessage errorResponse={patientMutation.data.error} />}
 
             <h1 className='form-title'>Dados pessoais</h1>
 
