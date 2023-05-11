@@ -16,7 +16,8 @@ export default function NewPatient(){
                         throw resJson.error
                     return resJson
                 })
-        }
+        },
+        onSuccess: props.closeClipboard
     })
 
     function handleSubmit(event){
@@ -88,10 +89,7 @@ export default function NewPatient(){
                     </div>
                 </div>
                 
-                <button type="submit" value="Submit" id='submit-btn' className={
-                    (patientMutation.isSuccess)
-                        && 'sucess'
-                }>Submit</button>
+                <button type="submit" value="Submit" id='submit-btn'>Submit</button>
             </form>
         </>
     )

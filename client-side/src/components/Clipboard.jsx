@@ -14,9 +14,9 @@ export default function Clipboard(props){
                 {(props.selectedPatient) && 
                 <div className='clipboard-content'>
                 {props.selectedPatient != 'newPatient'
-                    ?   <EditPatient pkIdPatient={props.selectedPatient}/>
+                    ?   <EditPatient pkIdPatient={props.selectedPatient} closeClipboard={() => props.selectPatient('')}/>
 
-                    :   <NewPatient />
+                    :   <NewPatient closeClipboard={() => props.selectPatient('')}/>
                 }
                 </div>}
             </div>
