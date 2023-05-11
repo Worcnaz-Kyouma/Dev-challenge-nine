@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query'
 import ErrorMessage from './ErrorMessage'
 import './styles/NewEditPatient.css'
 
-export default function NewPatient(){
+export default function NewPatient(props){
     const patientMutation = useMutation({
         mutationFn: (newPatient) => {
             return fetch("http://localhost:22194/patients", {
