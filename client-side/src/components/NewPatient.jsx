@@ -9,7 +9,9 @@ export default function NewPatient(){
                     method: "POST",
                     body: JSON.stringify(newPatient),
                     headers: {"Content-type": "application/json; charset=UTF-8"}
-                }).then((res) => res.json()).then((resJson) => {
+                })
+                .then((res) => res.json())
+                .then((resJson) => {
                     if(resJson?.error)
                         throw resJson.error
                     return resJson
