@@ -6,10 +6,10 @@ const router = express.Router();
 
 router.route('/')
     .post(patientController.createPatient)
-    .put(patientController.updatePatient)
     .get(patientController.getPatients)
 
 router.route('/:pkIdPatient')
+    .put(patientController.updatePatient)
     .delete(patientController.deletePatient)
     .get(patientController.getPatient)
 

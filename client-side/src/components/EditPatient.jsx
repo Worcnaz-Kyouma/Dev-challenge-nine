@@ -20,7 +20,7 @@ export default function EditPatient(props){
 
     const patientMutation = useMutation({
         mutationFn: (editedPatient) => {
-            return fetch("http://localhost:22194/patients", {
+            return fetch("http://localhost:22194/patients/" + props.pkIdPatient, {
                     method: "PUT",
                     body: JSON.stringify(editedPatient),
                     headers: {"Content-type": "application/json; charset=UTF-8"}

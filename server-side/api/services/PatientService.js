@@ -58,10 +58,10 @@ function getPatient(pkIdPatient){
     return Patient.findByPk(pkIdPatient).catch(generateErrorJSON)
 }
 
-function updatePatient(patientJSON){
+function updatePatient(pkIdPatient, patientJSON){
     return Patient.update(patientJSON, {
         where: {
-            pkIdPatient: patientJSON.pkIdPatient
+            pkIdPatient: pkIdPatient
         }
     }).catch(generateErrorJSON)
 }

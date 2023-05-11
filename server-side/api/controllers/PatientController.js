@@ -44,7 +44,7 @@ async function getPatient(req, res){
 }
 
 async function updatePatient(req, res){
-    const data = await patientService.updatePatient(req.body)
+    const data = await patientService.updatePatient(req.params.pkIdPatient, req.body)
 
     res.status(200)
     if(data?.error)
