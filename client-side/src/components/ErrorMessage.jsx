@@ -13,6 +13,11 @@ export default function ErrorMessage(props){
         error.message = 'Email already assigned to another patient!'
     }
     
+    if(error.message == 'Failed to fetch'){
+        error.type = 'Network'
+        error.message = 'Failed to connect into the server'
+    }
+    
     return(
         <div className="error">
             <h1 className='error-title'>

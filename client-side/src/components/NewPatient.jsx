@@ -9,8 +9,12 @@ export default function NewPatient(){
                     method: "POST",
                     body: JSON.stringify(newPatient),
                     headers: {"Content-type": "application/json; charset=UTF-8"}
-                }).then((res) => res.json())
-        },
+                }).then((res) => res.json()).then((resJson) => {
+                    if(resJson?.error)
+                        throw resJson.error
+                    return resJson
+                })
+        }
     })
 
     function handleSubmit(event){
@@ -26,7 +30,7 @@ export default function NewPatient(){
     
     return(
         <>
-            {(patientMutation.isSuccess && patientMutation.data?.error) && <ErrorMessage errorResponse={patientMutation.data.error} />}
+            {(patientMutation.isError) && <ErrorMessage errorResponse={patientMutation.error} />}
 
             <h1 className='form-title'>Dados pessoais</h1>
 
@@ -37,14 +41,7 @@ export default function NewPatient(){
                         <label htmlFor="nmPatient">Nome</label>
                     </div>
                     <div id='dtBorn-wrapper' className="input-wrapper">
-                        <input type="date" id="dtBorn" name="dtBorn" placeholder=' ' required max={
-                            (() => {
-                                let date = new Date();
-                                date.setDate(date.getDate() + 1)
-                    
-                                return date.toJSON().slice(0,10)
-                            })()
-                        }/>
+                        <input type="date" id="dtBorn" name="dtBorn" placeholder=' ' required max={new Date().toJSON().slice(0,10)}/>
                         <label htmlFor="dtBorn">Data de nascimento</label>
                     </div>
                     <div id='dsEmail-wrapper' className="input-wrapper">
@@ -90,7 +87,7 @@ export default function NewPatient(){
                 </div>
                 
                 <button type="submit" value="Submit" id='submit-btn' className={
-                    (patientMutation.isSuccess && !patientMutation.data?.error)
+                    (patientMutation.isSuccess)
                         && 'sucess'
                 }>Submit</button>
             </form>
