@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import ErrorMessage from './ErrorMessage'
 import './styles/NewEditPatient.css'
+import './styles/EditPatient.css'
 
 export default function EditPatient(props){
     const patientQuery = useQuery({
@@ -14,7 +15,7 @@ export default function EditPatient(props){
                 return resJson
             })
         },
-        staleTime: 5 * 60 * 1000
+        staleTime: 1 * 60 * 1000
     })
 
     const patientMutation = useMutation({
@@ -44,13 +45,21 @@ export default function EditPatient(props){
         patientMutation.mutate(formJson)
     }
 
-    if(patientQuery.isFetching) return <p>Loading...</p>
+    if(patientQuery.isFetching) return /*<p>Loading...</p>*/<div className='loader'></div>
+
+    if(patientQuery.isError) return(
+        <>
+            <ErrorMessage errorResponse={patientQuery.error} />
+            <div className='error-content'></div>
+            
+        </>
+    )
     
     return(
         <>
             {(patientMutation.isError) && <ErrorMessage errorResponse={patientMutation.error} />}
 
-            <h1 className='form-title'>Dados pessoais</h1>
+            <h1 className='form-title'>Editar paciente[mudar?]</h1>
 
             <form onSubmit={handleSubmit}>
                 <div className='personal-data'>
@@ -59,7 +68,7 @@ export default function EditPatient(props){
                         <label htmlFor="nmPatient">Nome</label>
                     </div>
                     <div id='dtBorn-wrapper' className="input-wrapper">
-                        <input type="date" id="dtBorn" name="dtBorn" defaultValue={patientQuery.data.dtBorn.slice(0,10)} required max={new Date().toJSON().slice(0,10)}/>
+                        <input type="date" id="dtBorn" name="dtBorn" defaultValue={patientQuery.data.dtBorn.slice(0,10)} required max={new Date().toISOString().slice(0,10)}/>
                         <label htmlFor="dtBorn">Data de nascimento</label>
                     </div>
                     <div id='dsEmail-wrapper' className="input-wrapper">

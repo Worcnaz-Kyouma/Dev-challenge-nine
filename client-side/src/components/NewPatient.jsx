@@ -34,7 +34,7 @@ export default function NewPatient(){
         <>
             {(patientMutation.isError) && <ErrorMessage errorResponse={patientMutation.error} />}
 
-            <h1 className='form-title'>Dados pessoais</h1>
+            <h1 className='form-title'>Novo paciente</h1>
 
             <form onSubmit={handleSubmit}>
                 <div className='personal-data'>
@@ -43,7 +43,7 @@ export default function NewPatient(){
                         <label htmlFor="nmPatient">Nome</label>
                     </div>
                     <div id='dtBorn-wrapper' className="input-wrapper">
-                        <input type="date" id="dtBorn" name="dtBorn" placeholder=' ' required max={new Date().toJSON().slice(0,10)}/>
+                        <input type="date" id="dtBorn" name="dtBorn" placeholder=' ' required max={new Date().toISOString().slice(0,10)}/>
                         <label htmlFor="dtBorn">Data de nascimento</label>
                     </div>
                     <div id='dsEmail-wrapper' className="input-wrapper">

@@ -32,7 +32,7 @@ const Patient = sequelize.define('Patient', {
                 let date = new Date();
                 date.setDate(date.getDate() + 1)
                 
-                return date.toJSON().slice(0,10)
+                return date.toISOString().slice(0,10)
             })()
         }
     },
