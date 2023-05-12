@@ -6,12 +6,16 @@ main{
     align-items: center;
 
     width: 88%;
-    
-    border: 2px dotted black;
+
+    background-color: rgb(230, 230, 230);
 }
 
 .nmPatient-filter{
     display: flex;
     justify-content: space-evenly;
     width: 60%;
+}
+
+table{
+    border: 2px dotted black;
 }

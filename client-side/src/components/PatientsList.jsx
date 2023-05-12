@@ -49,7 +49,16 @@ export default function PatientsList(){
                 {patientQuery.isSuccess
                     ?   <>
                             <table>
-                                {patientQuery.data.patients.map(patient => <PatientRow key={patient.pkIdPatient} />)}
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Email</th>
+                                        <th>Data de nascimento</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {patientQuery.data.patients.map(patient => <PatientRow key={patient.pkIdPatient} patient={patient}/>)}
+                                </tbody>
                             </table>
                             <div className='pageControllers-wrapper'>
                                 <span>
