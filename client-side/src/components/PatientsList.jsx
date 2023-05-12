@@ -5,12 +5,12 @@ import { useQuery } from '@tanstack/react-query'
 export default function PatientsList(){
     const [ patients, setPatients ] = useState(null)
     const [ page, setPage ] = useState(1)
-    const [ nmPatientSearched, setNmPatientSearched ] = useState(null)
+    const [ nmPatientSearched, setNmPatientSearched ] = useState('')
 
     const patientQuery = useQuery({
         queryKey: ['patients', { page: page }, { nmPatient: nmPatientSearched }],
         queryFn: () => {
-            return fetch("http://localhost:22194/patients?" + "limit=5" + "&" + "page=" + page + nmPatientSearched && ("&" + "nmPatient=" + nmPatientSearched))
+            return fetch("http://localhost:22194/patients?" + "limit=5" + "&" + "page=" + page + (nmPatientSearched && ("&" + "nmPatient=" + nmPatientSearched)))
             .then((res) => res.json())
             .then((resJson) => {
                 if(resJson?.error)
@@ -18,12 +18,14 @@ export default function PatientsList(){
                 return resJson
             })
         },
+        onSuccess: (data) => {
+            setPatients(data.patients.map(patient => <PatientRow />))
+        },
         staleTime:  30 * 1000
     })
     return(
         <>
-            <PatientRow />
-            <PatientRow />
+            {patients}
         </>
     )
 }
