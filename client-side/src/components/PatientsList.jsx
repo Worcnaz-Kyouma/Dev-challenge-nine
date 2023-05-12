@@ -3,8 +3,9 @@ import PatientRow from './PatientRow'
 import { useQuery } from '@tanstack/react-query'
 import ErrorMessage from './ErrorMessage'
 
+import './styles/PatientsList.css'
+
 export default function PatientsList(){
-    const [ patients, setPatients ] = useState(null)
     const [ page, setPage ] = useState(1)
     const [ nmPatientFiltered, setNmPatientFiltered ] = useState('')
 
