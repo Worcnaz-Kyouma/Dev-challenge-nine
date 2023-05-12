@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import PatientRow from './PatientRow'
 import { useQuery } from '@tanstack/react-query'
+import ErrorMessage from './ErrorMessage'
 
 export default function PatientsList(){
     const [ patients, setPatients ] = useState(null)
@@ -61,7 +62,10 @@ export default function PatientsList(){
                         </>
                     :   patientQuery.isLoading
                             ?   <div className='loader'></div>
-                            :   <div className='error-content'></div>
+                            :   <>
+                                    <ErrorMessage errorResponse={patientQuery.error} />
+                                    <div className='error-content'></div>
+                                </>
                 }
                 </div>
             </main>

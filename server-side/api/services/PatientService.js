@@ -1,3 +1,4 @@
+const { Op } = require('sequelize')
 const Patient = require('./../models/Patient')
 
 function generateErrorJSON(err){
@@ -25,7 +26,11 @@ async function getPatients(queryParams){
     
     try {
         const patientAmount = await Patient.count({
-            where: nmPatient ? {nmPatient: nmPatient} : null
+            where: nmPatient 
+                ? {nmPatient:{
+                    [Op.like]: '%'+nmPatient+'%'
+                }} 
+                : null
         })
         
         const totalPages = Math.ceil(patientAmount/limit) 
@@ -37,7 +42,11 @@ async function getPatients(queryParams){
         const rows = await Patient.findAll({
             limit: parseInt(limit),
             offset: (page-1) * limit,
-            where: nmPatient ? {nmPatient: nmPatient} : null
+            where: nmPatient 
+                ? {nmPatient:{
+                    [Op.like]: '%'+nmPatient+'%'
+                }} 
+                : null
         })
 
         const responseBody = {
