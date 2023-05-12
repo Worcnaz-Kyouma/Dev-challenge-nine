@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import ErrorMessage from './ErrorMessage'
 import './styles/NewEditPatient.css'
-import './styles/EditPatient.css'
 
 export default function EditPatient(props){
     const patientQuery = useQuery({
