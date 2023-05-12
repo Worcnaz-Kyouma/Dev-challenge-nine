@@ -21,14 +21,12 @@ export default function PatientsList(){
                 return resJson
             })
         },
-        onSuccess: (data) => {
-            setPatients(data.patients.map(patient => <PatientRow />))
-        },
         staleTime:  30 * 1000
     })
 
     return(
         <>
+        {console.log('sus')}
             <main>
                 <div className='nmPatient-filter'>
                     <div className='input-wrapper'>
@@ -46,7 +44,7 @@ export default function PatientsList(){
                 {patientQuery.isSuccess
                     ?   <>
                             <table>
-                                {patients/*patientQuery.data.patients.map(patient => <PatientRow />)*/}
+                                {patientQuery.data.patients.map(patient => <PatientRow key={patient.pkIdPatient} />)}
                             </table>
                             <div className='pageControllers-wrapper'>
                                 <span>
