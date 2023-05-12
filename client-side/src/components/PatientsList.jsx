@@ -13,7 +13,11 @@ export default function PatientsList(){
     const patientQuery = useQuery({
         queryKey: ['patients', { page: page }, { nmPatient: nmPatientFiltered }],
         queryFn: () => {
-            return fetch("http://localhost:22194/patients?" + "limit=5" + "&" + "page=" + page + (nmPatientFiltered && ("&" + "nmPatient=" + nmPatientFiltered)))
+            const limit = 5
+
+            return fetch(`http://localhost:22194/patients?limit=${limit}&page=${page}` + (nmPatientFiltered && (
+                `&nmPatient=${nmPatientFiltered}`
+            )))
             .then((res) => res.json())
             .then((resJson) => {
                 if(resJson?.error)
@@ -21,12 +25,12 @@ export default function PatientsList(){
                 return resJson
             })
         },
+        keepPreviousData: true,
         staleTime:  30 * 1000
     })
 
     return(
         <>
-        {console.log('sus')}
             <main>
                 <div className='nmPatient-filter'>
                     <div className='input-wrapper'>
@@ -50,10 +54,10 @@ export default function PatientsList(){
                                 <span>
                                 {page} / {patientQuery.data.totalPages}
                                 </span>
-                                <button disabled={page==1}>
+                                <button onClick={() => setPage(oldPage => --oldPage)} disabled={page==1}>
                                     Previous page
                                 </button>
-                                <button disabled={page==patientQuery.data.totalPages}>
+                                <button onClick={() => setPage(oldPage => ++oldPage)} disabled={page==patientQuery.data.totalPages}>
                                     Next page
                                 </button>
                             </div>
