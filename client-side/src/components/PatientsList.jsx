@@ -14,7 +14,7 @@ export default function PatientsList(){
     const patientQuery = useQuery({
         queryKey: ['patients', { page: page }, { nmPatient: nmPatientFiltered }],
         queryFn: () => {
-            const limit = 5
+            const limit = 7
 
             return fetch(`http://localhost:22194/patients?limit=${limit}&page=${page}` + (nmPatientFiltered && (
                 `&nmPatient=${nmPatientFiltered}`
@@ -35,8 +35,8 @@ export default function PatientsList(){
             <main className='main-patient'>
                 <div className='nmPatient-filter'>
                     <div className='input-filter-wrapper'>
+                    <label htmlFor="nmPatientFiltered">Nome</label>
                         <input type="text" name='nmPatientFiltered' id='nmPatientFiltered' ref={nmPatientDOMRef} placeholder=' '/>
-                        <label htmlFor="nmPatientFiltered">Nome</label>
                     </div>
                     <button onClick={() => {
                         setNmPatientFiltered(nmPatientDOMRef.current.value)
