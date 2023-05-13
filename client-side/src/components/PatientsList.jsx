@@ -32,9 +32,9 @@ export default function PatientsList(){
 
     return(
         <>
-            <main>
+            <main className='main-patient'>
                 <div className='nmPatient-filter'>
-                    <div className='input-wrapper'>
+                    <div className='input-filter-wrapper'>
                         <input type="text" name='nmPatientFiltered' id='nmPatientFiltered' ref={nmPatientDOMRef} placeholder=' '/>
                         <label htmlFor="nmPatientFiltered">Nome</label>
                     </div>
@@ -48,7 +48,7 @@ export default function PatientsList(){
                 <div className='table-wrapper'>
                 {patientQuery.isSuccess
                     ?   <>
-                            <table>
+                            <table className='table-patient'>
                                 <thead>
                                     <tr>
                                         <th>Nome</th>

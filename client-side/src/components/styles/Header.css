@@ -1,6 +1,7 @@
 header{
-    flex-basis: 120px;
+    flex-basis: 75px;
     width: 100%;
 
-    background-color: aquamarine;
+    background-color: #ffffff;
+    border-bottom: 2px solid black;
 }

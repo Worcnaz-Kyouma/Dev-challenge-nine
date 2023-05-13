@@ -1,4 +1,4 @@
-main{
+.main-patient{
     flex-grow: 1;
 
     display: flex;
@@ -6,8 +6,6 @@ main{
     align-items: center;
 
     width: 88%;
-
-    background-color: rgb(230, 230, 230);
 }
 
 .nmPatient-filter{
@@ -16,6 +14,7 @@ main{
     width: 60%;
 }
 
-table{
+.table-patient{
     border: 2px dotted black;
+    background-color: #fffefe;
 }
