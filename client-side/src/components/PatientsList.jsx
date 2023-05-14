@@ -59,18 +59,15 @@ export default function PatientsList(){
                                 </thead>
                                 <tbody>
                                     {patientQuery.data.patients.map(patient => <PatientRow key={patient.pkIdPatient} patient={patient}/>)}
+                                    <tr id='fill-tr'></tr>
                                 </tbody>
                             </table>
                             <div className='pageControllers-wrapper'>
+                                <button onClick={() => setPage(oldPage => --oldPage)} disabled={page==1}></button>
                                 <span>
                                 {page} / {patientQuery.data.totalPages}
                                 </span>
-                                <button onClick={() => setPage(oldPage => --oldPage)} disabled={page==1}>
-                                    Previous page
-                                </button>
-                                <button onClick={() => setPage(oldPage => ++oldPage)} disabled={page==patientQuery.data.totalPages}>
-                                    Next page
-                                </button>
+                                <button onClick={() => setPage(oldPage => ++oldPage)} disabled={page==patientQuery.data.totalPages}></button>
                             </div>
                         </>
                     :   patientQuery.isLoading
