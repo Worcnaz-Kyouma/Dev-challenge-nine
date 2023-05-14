@@ -10,12 +10,6 @@
 }
 
 .form-patient{
-    /*display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-content: space-evenly;
-    align-items: center;*/
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -105,11 +99,7 @@
     box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1) inset;
 }
 
-#submit-btn.sucess{
-    background-color: #5CB365;
-}
-
-.form-input-wrapper{
+.form-patient>div>div{
     position: relative;
     height: 40px;
     width: 275px;
@@ -123,7 +113,7 @@
     background-color: #f9f9f9;
 }
 
-.form-label{
+.form-patient label{
     position: absolute;
 
     font-size: 16px;
@@ -142,7 +132,7 @@
     transition: all 0.4s;
 }
 
-.form-input{
+.form-patient input{
     position: absolute;
 
     box-sizing: border-box;
@@ -161,11 +151,11 @@
     background-color: transparent;
 }
 
-.form-input:focus{
+.form-patient input:focus{
     outline: none;
 }
 
-.form-input:focus~.form-label,.form-input:not(:placeholder-shown)~.form-label{
+.form-patient input:focus~label, .form-patient input:not(:placeholder-shown)~label{
     font-size: 13px;
     transform: translateY(-125%);
 }

@@ -10,9 +10,7 @@
     position: fixed;
 
     top: 91%;
-    left: -webkit-calc(50% - (var(--clipboard-width)/2));
-    left:    -moz-calc(50% - (var(--clipboard-width)/2));
-    left:         calc(50% - (var(--clipboard-width)/2));
+    left: calc(50% - (var(--clipboard-width)/2));
 
     background: url("..\resources\Clipboard(New).png");
     background-repeat: no-repeat;
