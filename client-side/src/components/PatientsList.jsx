@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import ErrorMessage from './ErrorMessage'
 
 import './styles/PatientsList.css'
+import './styles/NmPatientFilter.css'
 
 export default function PatientsList(){
     const [ page, setPage ] = useState(1)
@@ -34,10 +35,13 @@ export default function PatientsList(){
         <>
             <main className='main-patient'>
                 <div className='nmPatient-filter'>
-                    <div>
-                        <label htmlFor="nmPatientFiltered">Nome</label>
-                        <input type="text" name='nmPatientFiltered' id='nmPatientFiltered' ref={nmPatientDOMRef} placeholder=' '/>
-                    </div>
+                    <input type="text" name='nmPatientFiltered' id='nmPatientFiltered' ref={nmPatientDOMRef} placeholder='Search by pacient name' 
+                    onKeyDown={(event) => {
+                        if(event.key=='Enter'){
+                            setNmPatientFiltered(nmPatientDOMRef.current.value)
+                            nmPatientDOMRef.current.blur()
+                        }
+                    }} />
                     <button onClick={() => {
                         setNmPatientFiltered(nmPatientDOMRef.current.value)
                     }}>

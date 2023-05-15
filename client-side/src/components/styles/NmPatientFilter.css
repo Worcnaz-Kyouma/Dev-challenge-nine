@@ -1,0 +1,78 @@
+.nmPatient-filter{
+    display: flex;
+    justify-content: space-between;
+
+    position: relative;
+    width: 80%;
+    height: 50px;
+
+    margin: 15px 0px 15px 0px;
+
+    border-radius: 15px 0px 0px 15px;
+
+    box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.2);
+
+    background-color: white;
+}
+
+.nmPatient-filter input{
+    flex-grow: 36;
+
+    font-size: 16px;
+
+    padding: 15px;
+
+    border: 0px;
+    border-radius: 15px 0px 0px 15px;
+
+    transition: all 0.2s;
+}
+
+.nmPatient-filter input:focus{
+    outline: none;
+    font-size: 18px;
+
+    transform: scale(1.05);
+}
+
+.nmPatient-filter button{
+    position: relative;
+    flex-grow: 1;
+
+    border: 0px;
+
+    cursor: pointer;
+
+    background-color: #004D79;
+    color: white;
+
+    transition: all 0.2s;
+}
+
+.nmPatient-filter input:focus~button{
+    transform: scale(1.09);
+}
+
+.nmPatient-filter button::before{
+    content: '';
+
+    position: absolute;
+    width: 95%;
+    height: 2px;
+
+    transform: scaleX(0);
+    
+    bottom: 5%;
+    left: 2.5%;
+
+    background-color: white;
+    
+    transform-origin: bottom left;
+    transition: all 0.2s;
+}
+
+.nmPatient-filter button:hover::before{
+    transform: scaleX(1);
+}
+
+

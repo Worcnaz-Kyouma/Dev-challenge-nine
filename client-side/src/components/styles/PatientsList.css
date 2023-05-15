@@ -13,6 +13,7 @@
     position: relative;
     width: 100%;
     height: 80%;
+    min-height: 500px;
 
     border-bottom: 40px solid #3C4856;
 
