@@ -33,12 +33,8 @@ async function getPatients(queryParams){
                 : null
         })
         
-        const totalPages = Math.ceil(patientAmount/limit) 
+        const totalPages = Math.ceil(patientAmount/limit)
 
-        /*if(page!=1 && totalPages<page)
-            throw new Error("Invalid page")*/
-
-        
         const rows = await Patient.findAll({
             limit: parseInt(limit),
             offset: (page-1) * limit,
