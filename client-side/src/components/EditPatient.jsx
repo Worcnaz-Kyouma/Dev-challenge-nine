@@ -1,8 +1,10 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import ErrorMessage from './ErrorMessage'
 import './styles/NewEditPatient.css'
 
 export default function EditPatient(props){
+    const queryClient = useQueryClient()
+
     const patientQuery = useQuery({
         queryKey: ['patients', props.pkIdPatient],
         queryFn: () => {
@@ -31,7 +33,10 @@ export default function EditPatient(props){
                     return resJson
                 })
         },
-        onSuccess: props.closeClipboard
+        onSuccess: () => {
+            queryClient.invalidateQueries(["patients"])
+            props.closeClipboard()
+        }
     })
 
     function handleSubmit(event){

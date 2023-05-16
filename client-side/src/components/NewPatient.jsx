@@ -1,8 +1,10 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import ErrorMessage from './ErrorMessage'
 import './styles/NewEditPatient.css'
 
 export default function NewPatient(props){
+    const queryClient = useQueryClient()
+
     const patientMutation = useMutation({
         mutationFn: (newPatient) => {
             return fetch("http://localhost:22194/patients", {
@@ -17,7 +19,10 @@ export default function NewPatient(props){
                     return resJson
                 })
         },
-        onSuccess: props.closeClipboard
+        onSuccess: () => {
+            queryClient.invalidateQueries(["patients"])
+            props.closeClipboard()
+        }
     })
 
     function handleSubmit(event){
