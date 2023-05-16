@@ -7,3 +7,32 @@
 .patient-row:hover{
     box-shadow: 1px 1px 15px 0px rgba(0, 0, 0, 0.1) inset;
 }
+
+.patient-delete{
+    background-color: rgb(228, 90, 90);
+    animation: delete 0.3s linear;
+}
+
+.patient-delete div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    color: white;
+}
+
+.patient-delete div button{
+    height: 50%;
+}
+
+@keyframes delete {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
