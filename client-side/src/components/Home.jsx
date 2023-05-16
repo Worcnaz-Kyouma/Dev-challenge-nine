@@ -12,7 +12,7 @@ export default function Home(){
         <>
             <Header />
             {/*<button onClick={() => selectPatient(1)}>Edit patient 1</button>*/}
-            <PatientsList />
+            <PatientsList selectPatient={selectPatient}/>
             <Clipboard selectedPatient={selectedPatient} selectPatient={selectPatient}/>
         </>
     )

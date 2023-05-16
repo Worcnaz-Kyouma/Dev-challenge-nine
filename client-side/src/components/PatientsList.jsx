@@ -6,7 +6,7 @@ import ErrorMessage from './ErrorMessage'
 import './styles/PatientsList.css'
 import './styles/NmPatientFilter.css'
 
-export default function PatientsList(){
+export default function PatientsList(props){
     const [ page, setPage ] = useState(1)
     const [ nmPatientFiltered, setNmPatientFiltered ] = useState('')
 
@@ -62,7 +62,7 @@ export default function PatientsList(){
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {patientQuery.data.patients.map(patient => <PatientRow key={patient.pkIdPatient} patient={patient}/>)}
+                                    {patientQuery.data.patients.map(patient => <PatientRow key={patient.pkIdPatient} selectPatient={() => props.selectPatient(patient.pkIdPatient)} patient={patient}/>)}
                                     <tr id='fill-tr'></tr>
                                 </tbody>
                             </table>

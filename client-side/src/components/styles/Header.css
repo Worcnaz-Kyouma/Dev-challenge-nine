@@ -1,7 +1,25 @@
 header{
     flex-basis: 75px;
+    flex-shrink: 0;
     width: 100%;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-bottom: 1px solid #dddddd;
+
+
+    background: url("..\resources\medcloudlogo.png");
+    background-repeat: no-repeat;
+    background-size: 175.95px 31.05px;
+    background-position: 35px center;
     background-color: #ffffff;
-    border-bottom: 2px solid #3C4856;
+}
+
+header span{
+    padding: 5px 30px 5px 30px;
+
+    border: 1px solid rgb(165, 165, 165);
+    border-radius: 8px;
 }

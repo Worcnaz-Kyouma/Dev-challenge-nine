@@ -37,7 +37,13 @@
     height: 100%;
 }
 
-.table-patient thead, .table-patient tr{
+.table-patient thead{
+    height: 10%;
+}
+.table-patient tbody{
+    height: 90%;
+}
+.table-patient tbody tr{
     height: 12.5%;
 }
 

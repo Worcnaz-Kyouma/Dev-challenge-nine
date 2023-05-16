@@ -10,7 +10,11 @@ body, #root{
     flex-direction: column;
     align-items: center;
 
+    color: rgb(90, 90, 90);
+
     background-color: #f2f2f3;
+
+    overflow-y: auto 
 }
 
 .loader{
