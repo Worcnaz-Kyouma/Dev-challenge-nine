@@ -12,7 +12,7 @@
 .table-wrapper{
     position: relative;
     width: 100%;
-    height: 80%;
+    height: 79%;
     min-height: 500px;
 
     border-bottom: 40px solid #3C4856;
@@ -39,6 +39,11 @@
 
 .table-patient thead, .table-patient tr{
     height: 12.5%;
+}
+
+.table-patient th{
+    padding: 0px 20px 0px 20px;
+    text-align: start;
 }
 
 .table-patient td{

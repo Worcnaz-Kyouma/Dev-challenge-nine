@@ -1,3 +1,17 @@
+.pseudo-body{
+    position: absolute;
+    width: 0%;
+    height: 0%;
+
+    transition: background-color 0.3s ;
+}
+
+.pseudo-body.enabled{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
 .clipboard{
     --clipboard-width: 700px;
     
@@ -9,10 +23,10 @@
 
     position: fixed;
 
-    top: 91%;
+    bottom: -94%;
     left: calc(50% - (var(--clipboard-width)/2));
 
-    background: url("..\resources\Clipboard(New).png");
+    background: url("..\resources\Clipboard.png");
     background-repeat: no-repeat;
     background-size:100% 100%;
 
@@ -23,16 +37,14 @@
 
 .clipboard-btn{
     position: absolute;
-    top: 8px;
+    top: 4px;
 
-    width: 10%;
+    width: 50px;
     aspect-ratio: 1;
 
     border: 0px;
     border-radius: 50%;
     box-shadow: 1px 1px 10px 1px inset rgba(0, 0, 0, 0.259);
-
-    background-color: #ffc90a;
 
     background: url("..\resources\cross-sign.png");
     background-repeat: no-repeat;
@@ -46,7 +58,7 @@
 }
 
 .clipboard.enabled{
-    top:0px;
+    bottom:0px;
 }
 
 .clipboard-btn.enabled{
@@ -58,14 +70,12 @@
     flex-direction: column;
 
     position: absolute;
-    top: 18%;
+    top: 12%;
 
-    width: 90%;
-    height: 78%;
+    width: 95%;
+    height: 85%;
 
     border-radius: 20px;
-
-    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.089);
 
     background-color: #fffefe;
 }
