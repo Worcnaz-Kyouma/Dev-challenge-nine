@@ -26,22 +26,21 @@ export default function PatientRow(props){
                             <td><button onClick={(e) => {
                                 e.stopPropagation()
                                 setDeleteMode(true)
-                            }}>Delete</button></td>
+                            }}>Deletar</button></td>
                         </tr>
 
                     :   <tr className="patient-delete">
                             <td colSpan={'100%'}>
                                 <div>
-                                    <span>Do you really wanna delete {props.patient.nmPatient}?</span>
+                                    <span>Você realmente deseja deletar o paciente <b>{props.patient.nmPatient}</b>?</span>
                                     <button onClick={(e) => {
                                         e.stopPropagation()
-                                        patientMutation.mutate()//delete!
-                                    }}>Yes!</button>
+                                        patientMutation.mutate()
+                                    }}>Sim!</button>
                                     <button onClick={(e) => {
-                                        //setTimeout(() => setDeleteMode(false), 2000)? Para dar um intervalo de 2 segundos para sumirmos com estes dados de maneira chad com css?
                                         e.stopPropagation()
                                         setDeleteMode(false)
-                                    }}>No</button>
+                                    }}>Não</button>
                                 </div>
                             </td>
                         </tr>

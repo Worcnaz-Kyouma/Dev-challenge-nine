@@ -35,7 +35,7 @@ export default function PatientsList(props){
         <>
             <main className='main-patient'>
                 <div className='nmPatient-filter'>
-                    <input type="text" name='nmPatientFiltered' id='nmPatientFiltered' ref={nmPatientDOMRef} placeholder='Search by pacient name' 
+                    <input type="text" name='nmPatientFiltered' id='nmPatientFiltered' ref={nmPatientDOMRef} placeholder='Busque pelo nome do paciente' 
                     onKeyDown={(event) => {
                         if(event.key=='Enter'){
                             setNmPatientFiltered(nmPatientDOMRef.current.value)
@@ -45,7 +45,7 @@ export default function PatientsList(props){
                     <button onClick={() => {
                         setNmPatientFiltered(nmPatientDOMRef.current.value)
                     }}>
-                        Search
+                        Buscar
                     </button>
                 </div>
                 

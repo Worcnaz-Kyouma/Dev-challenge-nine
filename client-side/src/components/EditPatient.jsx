@@ -64,7 +64,7 @@ export default function EditPatient(props){
         <>
             {(patientMutation.isError) && <ErrorMessage errorResponse={patientMutation.error} />}
 
-            <h1 className='form-title'>Editar paciente[mudar?]</h1>
+            <h1 className='form-title'>Editar paciente</h1>
 
             <form className='form-patient' onSubmit={handleSubmit}>
                 <div className='personal-data'>
