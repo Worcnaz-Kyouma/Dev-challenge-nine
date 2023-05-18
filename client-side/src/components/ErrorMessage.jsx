@@ -9,13 +9,13 @@ export default function ErrorMessage(props){
 
     //Specific errors
     if(error.type == 'UniqueConstraintError' && error.field.includes('dsEmail')){
-        error.type = 'Invalid Email'
-        error.message = 'Email already assigned to another patient!'
+        error.type = 'Email invalido'
+        error.message = 'Este email ja esta em uso por outro paciente'
     }
     
     if(error.message == 'Failed to fetch'){
         error.type = 'Network'
-        error.message = 'Failed to connect into the server'
+        error.message = 'Falha ao conectar com o servidor'
     }
     
     return(
