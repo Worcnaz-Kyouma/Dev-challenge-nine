@@ -3,20 +3,19 @@ const port = 22194
 const routes = require('./api/routes')
 
 server.get('/', (req, res) => {
-    let welcomeHtml = `
-    <h1>Running! Current URI\'s: </h1>
-    <br>
-    <ul>
-        <li>POST:/patients </li>
-        <li>DELETE:/patients/:pkIdPatient </li>
-        <li>PUT:/patients </li>
-        <li>GET:/patients </li>
-        <li>GET:/patients/:pkIdPatient </li>
-        <li>GET:/patients?limit&page&nmPatient </li>
-        <li>GET:/patients/amount </li>
-    </ul>
-    `
-    res.send(welcomeHtml)
+    let endPoints = {
+        endPoints: {
+            POST: '/patients',
+            GET: [
+                '/patients', 
+                '/patients/:pkIdPatient'
+            ],
+            PUT: '/patients/:pkIdPatient',
+            DELETE: '/patients/:pkIdPatient',
+        }
+    }
+
+    res.json(endPoints)
 })
 
 server.use('/', routes)
